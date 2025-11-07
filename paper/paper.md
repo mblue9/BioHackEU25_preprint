@@ -1,10 +1,10 @@
 ---
-title: 'BioHackEU23 report: Template for the very long title'
-title_short: 'BioHackEU23 #26: unknown chemical substances'
+title: 'BioHackEU25 report: Improving package annotation in metabolomics and proteomics via robust, ontology-driven LLM integration'
+title_short: 'BioHackEU25 #17: improving package annotation'
 tags:
-  - cheminformatics
-  - PubChem
-  - unknown chemical substances
+  - Bioinformatics
+  - EDAM
+  - metabolomics
 authors:
   - name: First Author
     affiliation: 1
@@ -19,13 +19,13 @@ affiliations:
   - name: ELIXIR Europe
     ror: 044rwnt51
     index: 2
-date: 8 November 2023
+date: 7 November 2025
 cito-bibliography: paper.bib
-event: BH23EU
-biohackathon_name: "BioHackathon Europe 2023"
+event: BH25EU
+biohackathon_name: "BioHackathon Europe 2025"
 biohackathon_url:   "https://biohackathon-europe.org/"
-biohackathon_location: "Barcelona, Spain, 2023"
-group: Project 26
+biohackathon_location: "Berlin, Germany, 2025"
+group: Project 13
 # URL to project git repo --- should contain the actual paper.md:
 git_url: https://github.com/biohackrxiv/publication-template
 # This is the short authors description that is used at the
@@ -36,202 +36,57 @@ authors_short: First Author \emph{et al.}
 
 # Introduction
 
-As part of the BioHackathon Europe 2023, we here report...
+## Background
+Metabolomics, fluxomics and proteomics face interoperability challenges despite shared platforms and analysis tools (e.g. MS-based workflows, bioimaging processing). While these communities have advanced standardization through EDAM-annotated Bioconductor packages, key gaps remain: (1) manual tool annotation in bio.tools is labor-intensive and inconsistent, (2) discoverability for experimentalists needs improvement, and (3) integration across ELIXIR services (Galaxy, WorkflowHub, Biocontainers) requires strengthening (as stated in this commissioned service and this white paper).
 
-## Meeting information
+## Objectives
+We seek to enhance the accessibility and interoperability of metabolomics and proteomics tools by leveraging Large Language Models (LLMs) and automated annotations. The first steps will be to develop an LLM-based querying system for the bio.tools API and strengthen the integration between omics tools and ELIXIR services, as well as the large collection of related Bioconductor packages. Additionally, the project aims to improve end-user accessibility by facilitating structured queries and guided workflow usage, particularly through platforms like Galaxy’s Metabolomics and Proteomics environments.
 
-If you want to submit a preprint to BioHackrXiv, first check if your meeting is registered. You can find a list
-of meetings [here](https://index.biohackrxiv.org/meetings). If your meeting is missing, please contact your meeting
-organizers. The above list also provides information on the YAML fields with information about the meeting.
-
-The following fields need to be given:
-
-```YAML
-biohackathon_name: "BioHackathon Europe 2023"
-biohackathon_url:   "https://biohackathon-europe.org/"
-biohackathon_location: "Barcelona, Spain, 2023"
-group: Project 26
-git_url: https://github.com/yourOrganization/your_report_repo
-```
-
-The [BioHackrXiv meeting pages](https://index.biohackrxiv.org/meetings) provide content to use for the first
-three fields. The `git_url:` field must have the link to the GitHub repository with your preprint (draft).
-
-## Author information
-
-Information about the authors is given in the [YAML](https://en.wikipedia.org/wiki/YAML) format at the top of this template.
-For authors you provide their names, their affiliations. That is the minimum, but as BioHackrXiv is moving to a situation
-where more metadata is shared, and used by, for example, EuropePMC, adding additional information ie encouraged.
-
-BioHackathons is about hacking together, and the minimal number of authors for reports is two. This makes a minimal example
-look like this:
-
-```yaml
-authors:
-  - name: First Author
-    affiliation: 1
-  - name: Last Author
-    affiliation: 2
-affiliations:
-  - name: First Affiliation
-    index: 1
-  - name: ELIXIR Europe
-    index: 2
-```
-
-### Author identifiers
-
-Ideally, authors provide their [ORCID](https://orcid.org/) identifier. For affiliations, It is added with the `orcid:` field.
-So, and author record would look like this:
-
-```yaml
-authors:
-  - name: First Author
-    affiliation: 1
-    orcid: 0000-0000-0000-0000
-```
-
-### Research Organization Registry identifiers
-
-Matching the author identifier, the affiliations can be further specified with the
-[Research Organization Registry](https://ror.org/) (ROR) identifier.
-For example, this is the affiliation identifier can be added with the `ror:` field:
-
-```yaml
-affiliations:
-  - name: ELIXIR Europe
-    ror: 044rwnt51
-    index: 2
-```
-
-### Contributor Role Taxonomy
-
-A last feature since is minimal support for the Contributor Role Taxonomy (CRediT). You
-can specify the role of authors in writing the report with the `role:` field. However,
-the authors are responsible for selection the right terms from [CRediT](https://credit.niso.org/).
-An example looks like this:
-
-```yaml
-authors:
-  - name: First Author
-    affiliation: 1
-    orcid: 0000-0000-0000-0000
-    role: Conceptualization, Writing – review & editing
-```
-
-### A full examples
-
-A full example then has this structure:
-
-```yaml
-authors:
-  - name: First Author
-    affiliation: 1
-    role: Writing – original draft
-  - name: Last Author
-    orcid: 0000-0000-0000-0000
-    affiliation: 2
-    role: Conceptualization, Writing – review & editing
-affiliations:
-  - name: First Affiliation
-    index: 1
-  - name: ELIXIR Europe
-    ror: 044rwnt51
-    index: 2
-```
-
-# Formatting
-
-This document use Markdown and you can look at [this tutorial](https://www.markdowntutorial.com/).
-
-## Subsection level 2
-
-Please keep sections to a maximum of only two levels.
-
-## Tables
-
-Tables can be added in the following way, though alternatives are possible:
-
-```markdown
-Table: Note that table caption is automatically numbered and should be
-given before the table itself.
-
-| Header 1 | Header 2 |
-| -------- | -------- |
-| item 1 | item 2 |
-| item 3 | item 4 |
-```
-
-This gives:
-
-Table: Note that table caption is automatically numbered and should be
-given before the table itself.
-
-| Header 1 | Header 2 |
-| -------- | -------- |
-| item 1 | item 2 |
-| item 3 | item 4 |
-
-## Figures
-
-A figure is added with:
-
-```markdown
-![Caption for BioHackrXiv logo figure](./biohackrxiv.png)
-```
-
-This gives:
-
-![Caption for BioHackrXiv logo figure](./biohackrxiv.png)
-
-Figures can be scaled by adding the width or height to the Markdown like this:
-
-```markdown
-![Caption for BioHackrXiv logo figure](./biohackrxiv.png){ width=50px }
-```
-
-# Other main section on your manuscript level 1
-
-Lists can be added with:
-
-1. Item 1
-2. Item 2
-
-# Citation Typing Ontology annotation
-
-You can use [CiTO](http://purl.org/spar/cito/2018-02-12) annotations, as explained in [this BioHackathon Europe 2021 write up](https://raw.githubusercontent.com/biohackrxiv/bhxiv-metadata/main/doc/elixir_biohackathon2021/paper.md) and [this CiTO Pilot](https://www.biomedcentral.com/collections/cito).
-Using this template, you can cite an article and indicate _why_ you cite that article, for instance DisGeNET-RDF [@citesAsAuthority:Queralt2016].
-
-The syntax in Markdown is as follows: a single intention annotation looks like
-`[@usesMethodIn:Krewinkel2017]`; two or more intentions are separated
-with colons, like `[@extends:discusses:Nielsen2017Scholia]`. When you cite two
-different articles, you use this syntax: `[@citesAsDataSource:Ammar2022ETL; @citesAsDataSource:Arend2022BioHackEU22]`.
-
-Possible CiTO typing annotation include:
-
-* citesAsDataSource: when you point the reader to a source of data which may explain a claim
-* usesDataFrom: when you reuse somehow (and elaborate on) the data in the cited entity
-* usesMethodIn
-* citesAsAuthority
-* citesAsEvidence
-* citesAsPotentialSolution
-* citesAsRecommendedReading
-* citesAsRelated
-* citesAsSourceDocument
-* citesForInformation
-* confirms
-* documents
-* providesDataFor
-* obtainsSupportFrom
-* discusses
-* extends
-* agreesWith
-* disagreesWith
-* updates
-* citation: generic citation
-
+- Implement two layers of an abstract process (as prototyped in EDAM-MCP):
+  - Identify whether a term exists in EDAM (if so, return)
+  - If not, suggest a term (including where it should go in EDAM)
+- Cater to user groups for facilitating annotation for users or automatically (bio.tools, Bioconductor, nf-core, Galaxy, Application scenarios: single user wants to annotate concrete instance; ecosystem maintainer wants to automate annotations (human-in-the-loop)
+- Use case: metabolomics
+  - Core set of well-annotated tools - Collect, Formalise, Introduce into benchmark
+- Benchmark the utility of the developed functions / MCP on the domain dataset
+  - Q&A of example packages and the questions a user might have for them
 
 # Results
+
+## Use case: Metabolomics packages
+We identified ~20 metabolomics tools that are well-annotated in bio.tools for use in testing EDAM annotations (listed in this spreadsheet). Some of these bio.tools entries were manually annotated/improved with EDAM terms during the hackathon. We manually created questions and answers about two of these tools for the benchmarking. Examples question-answer pairs for the xcms tool are here: https://github.com/edamontology/edammcp/blob/main/benchmark/xcms/qa.tsv
+Next step is to create a script that can be run against biotools API for a given package and generates Q&A datasets for that package.
+
+## EDAM-MCP workflow
+The challenge of applying an MCP-driven agent is to clearly and unambiguously instruct the agent with a multi-step task in order to reduce probabilistic problems in the copilot behaviour. We aim to structure the EDAM MCP approach into:
+an entry point that explains available functions to the copilot
+a set of deterministic functions that allow the copilot to flexibly apply the instructions
+To operationalize this approach, the EDAM MCP workflow introduces a structured process that separates high-level planning from low-level execution. After the entry point provides the copilot with task context and a concise map of available functions, the agent performs tool discovery and ranking using semantic metadata such as EDAM operations, data types, and constraints. This enables the agent to select the most relevant tools without requiring full parameter schemas upfront.
+Once the plan is formed, the agent retrieves detailed JSON signatures only for shortlisted tools and executes them through deterministic function calls. This design minimizes ambiguity, reduces probabilistic decision-making, and ensures reproducibility across multi-step tasks. By leveraging EDAM for semantic alignment, the workflow supports flexible orchestration while maintaining clarity and control. A graphical overview of these modules and their interactions is provided in https://github.com/edamontology/edammcp/issues/37, it contains a graphical overview of the modules, also below.
+
+![EDAM-MCP workflow](figures/edam_mcp_workflow.png) 
+
+*Segmentation*
+During the workflow design, an optional Segmentation step was introduced to break large free text input into chunks-  topics and keywords. This ensures clarity in planning and reduces ambiguity in multi-step execution. In addition, a Commonsense validation layer is planned to check the segmented steps for logical consistency and feasibility before execution, acting as a safeguard against nonsensical or incomplete plans.
+
+*Mapping of EDAM branches*
+In our initial approach, the MCP server returned EDAM terms regardless of EDAM branch type (Operation, Topic, Format, Data). For instance, if we provide a text description with a few sentences covering both Data and Operation, we may have imbalanced results in terms of concept types and we may also retrieve EDAM Topics. To overcome this potential issue, we are investigating if we can split the mapping work into more specific tasks.  We began work on searching for only Operations (PR https://github.com/edamontology/edammcp/pull/51). Topics, Data, Formats will come in a future PR if this one is accepted. We still need to decide between four single mapping tools (for operations, data, topics, formats) or one combined mapping tool relying on these sub-mapping tasks. 
+
+## Benchmarking
+Prior to the hackathon, we had outlined scenarios for benchmarking the EDAM-MCP workflow in a GitHub issue: https://github.com/edamontology/edammcp/issues/20
+During the hackathon, we started work on a programmatic approach, integrated with the biochatter benchmarking framework, that can evaluate the MCP based on the questions created from the well-annotated packages: https://github.com/edamontology/edammcp/tree/main/benchmark
+The automatically created benchmark questions are then transformed into the idiomatic biochatter benchmark format and executed in the biochatter suite, comparing naive model baselines to MCP-supported models. Merged in https://github.com/biocypher/biochatter/pull/321
+Preliminary results indicate that most models benefit from having the MCP support, even though the suite is far from complete. Claude Haiku is an exception, performing quite well on the (very simple) initial development benchmark of 10 questions. The benchmark should be continuously updated to inform the development of EDAM MCP. Further, EDAM MCP should be versioned to clarify which version was used to achieve which performance (this needs to be recorded in the benchmark results).
+
+![MCP baseline improvement summary](figures/mcp_baseline_improvement_summary.png) 
+![MCP baseline model comparison](figures/mcp_baseline_model_comparison.png) 
+![MCP baseline overall comparision summary](figures/mcp_baseline_overall_comparison.png) 
+![MCP baseline subtask comparison](figures/mcp_baseline_subtask_comparison.png) 
+
+
+
+
+![Poster from mid-week reporting](figures/biohack25_poster.png) 
 
 
 # Discussion
