@@ -13,12 +13,35 @@ authors:
     orcid: 0000-0000-0000-0000
     affiliation: 2
     role: Conceptualization, Writing – review & editing
+  - name: Claire Rioualen
+    orcid: "0000-0002-7684-8679"
+    affiliation: 3
+  - name: Vincent J Carey
+    orcid: "0000-0003-4046-0063"
+    affiliation: 4
+  - name: Hervé Ménager
+    orcid: "0000-0002-7552-1009"
+    affiliation: 3, 5
+  - name: Maria A Doyle
+    orcid: "0000-0003-4847-8436"
+    affiliation: 6
 affiliations:
   - name: First Affiliation
     index: 1
   - name: ELIXIR Europe
     ror: 044rwnt51
     index: 2
+  - name: "Institut Français de Bioinformatique, CNRS UAR 3601, Évry, France"
+    ror: 045f7pv37 
+    index: 3
+  - name: "Channing Division of Network Medicine, Mass General Brigham, Harvard Medical School, Boston MA, 02115 USA"
+    index: 4
+  - name: "Institut Pasteur, Université Paris Cité, Bioinformatics and Biostatistics Hub, 75015, Paris, France"
+    ror: 0495fxg12
+    index: 5
+  - name: "Limerick Digital Cancer Research Centre, School of Medicine, University of Limerick, V94 T9PX, Ireland"
+    ror: 00a0n9e72
+    index: 6
 date: 7 November 2025
 cito-bibliography: paper.bib
 event: BH25EU
@@ -94,7 +117,7 @@ Preliminary results indicate that most models benefit from having the MCP suppor
 ...
 
 ## Acknowledgements
-
+This work was performed during the ELIXIR BioHackathon Europe 2025 organised by ELIXIR in November 2025\. This work was supported by [ELIXIR](https://elixir-europe.org/), the research infrastructure for life science data. CR is part of the Institut Français de Bioinformatique (IFB, UAR 3601), funded by the Programme d’Investissements d’Avenir subsidised by the Agence Nationale de la Recherche, number ANR-11-INBS-0013.
 ...
 
 ## References
