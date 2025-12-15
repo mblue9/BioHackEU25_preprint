@@ -1,100 +1,192 @@
 ---
 title: 'BioHackEU25 report: Improving package annotation in metabolomics and proteomics via robust, ontology-driven LLM integration'
 title_short: 'BioHackEU25 #17: improving package annotation'
-tags:
-  - Bioinformatics
-  - EDAM
-  - metabolomics
-authors:
-  - name: First Author
-    affiliation: 1
-    role: Writing – original draft
-  - name: Last Author
-    orcid: 0000-0000-0000-0000
-    affiliation: 2
-    role: Conceptualization, Writing – review & editing
+date: "15 December 2025"
+output: pdf_document
 affiliations:
-  - name: First Affiliation
-    index: 1
-  - name: ELIXIR Europe
-    ror: 044rwnt51
-    index: 2
-date: 7 November 2025
+- name: "Helmholtz Munich, Germany"
+  ror: 00cfam450
+  index: 1
+- name: "Masaryk University, Brno, South Moravian, Czechia"
+  ror: 02j46qs45
+  index: 2
+- name: "Channing Division of Network Medicine, Mass General Brigham, Harvard Medical School, Boston MA, 02115 USA"
+  index: 3  
+- name: "Limerick Digital Cancer Research Centre, School of Medicine, University of Limerick, V94 T9PX, Ireland"
+  ror: 00a0n9e72
+  index: 4
+- name: "University of Nantes, Nantes, France"
+  ror: 03gnr7b55
+  index: 5
+- name: "Institut Français de Bioinformatique, CNRS UAR 3601, Évry, France"
+  ror: 045f7pv37 
+  index: 6
+- name: "Institut Pasteur, Université Paris Cité, Bioinformatics and Biostatistics Hub, 75015, Paris, France"
+  ror: 0495fxg12
+  index: 7
+tags:
+- bioinformatics
+- ontology
+- metabolomics
+- biohackeu25
+- Bioconductor
+- EDAM
+- ELIXIR
 cito-bibliography: paper.bib
 event: BH25EU
 biohackathon_name: "BioHackathon Europe 2025"
 biohackathon_url:   "https://biohackathon-europe.org/"
 biohackathon_location: "Berlin, Germany, 2025"
 group: Project 13
-# URL to project git repo --- should contain the actual paper.md:
-git_url: https://github.com/biohackrxiv/publication-template
-# This is the short authors description that is used at the
-# bottom of the generated paper (typically the first two authors):
-authors_short: First Author \emph{et al.}
+git_url: https://github.com/mblue9/BioHackEU25_preprint
+authors_short: Sebastian Lobentanzer \emph{et al.}
+authors:
+- name: Sebastian Lobentanzer
+  orcid: "0000-0003-3399-6695"
+  affiliation: 1
+- name: Helge Hecht
+  orcid: "0000-0001-6744-996X"
+  affiliation: 2
+- name: Vincent J Carey
+  orcid: "0000-0003-4046-0063"
+  affiliation: 3
+- name: Maria A Doyle
+  orcid: "0000-0003-4847-8436"
+  affiliation: 4
+- name: Alban Gaignard
+  orcid: "0000-0002-3597-8557"
+  affiliation: 5
+- name: Hervé Ménager
+  orcid: "0000-0002-7552-1009"
+  affiliation: 6, 7
+- name: Claire Rioualen
+  orcid: "0000-0002-7684-8679"
+  affiliation: 6
 ---
 
+# Abstract
+
+Identifying the most appropriate bioinformatics tool for a task remains challenging. Annotating tools with EDAM ontology terms can help but manual annotation is labour-intensive, error-prone, and difficult to scale. At BioHackathon Europe 2025, our team explored how Large Language Models (LLMs) can assist this process through the Model Context Protocol (MCP), an emerging open standard that enables LLMs to call deterministic functions rather than generate free text alone, using metabolomics as a domain use case. We developed the foundation of an MCP-based workflow that grounds tool descriptions in the EDAM ontology, improving reproducibility and semantic precision. Two core modules, entry-point specification and semantic text segmentation, were completed during the hackathon, while additional mapping, validation, and reporting functions were outlined for follow-up development. Benchmarking integrated with the BioChatter framework demonstrated that MCP-assisted models outperform unconstrained baselines on initial tests using metabolomics packages from bio.tools. Ongoing work will expand benchmarking datasets, refine term-mapping logic, and extend the workflow to proteomics, supporting scalable, ontology-driven annotation across the ELIXIR ecosystem.
 
 # Introduction
 
 ## Background
-Metabolomics, fluxomics and proteomics face interoperability challenges despite shared platforms and analysis tools (e.g. MS-based workflows, bioimaging processing). While these communities have advanced standardization through EDAM-annotated Bioconductor packages, key gaps remain: (1) manual tool annotation in bio.tools is labor-intensive and inconsistent, (2) discoverability for experimentalists needs improvement, and (3) integration across ELIXIR services (Galaxy, WorkflowHub, Biocontainers) requires strengthening (as stated in this commissioned service and this white paper).
+
+[Metabolomics](https://elixir-europe.org/communities/metabolomics), [fluxomics](https://elixir-europe.org/internal-projects/commissioned-services/fluxomics-workflows), and [proteomics](https://elixir-europe.org/communities/proteomics) face ongoing interoperability challenges despite shared platforms and analytical frameworks (e.g. MS-based workflows and bioimaging pipelines).  
+While these communities have advanced standardisation through [EDAM-annotated Bioconductor packages](https://doi.org/10.37044/osf.io/dsgnw_v1), several gaps persist:  
+1. Manual tool annotation in [bio.tools](https://bio.tools) is labour-intensive and often inconsistent.  
+2. Tool discoverability for experimentalists remains limited.  
+3. Integration across ELIXIR services (Galaxy, WorkflowHub, BioContainers) requires strengthening, as identified in [ELIXIR commissioned services](https://elixir-europe.org/internal-projects/commissioned-services/proteomics-pipelines) and a related [white paper](https://f1000research.com/articles/6-875/v1).
 
 ## Objectives
-We seek to enhance the accessibility and interoperability of metabolomics and proteomics tools by leveraging Large Language Models (LLMs) and automated annotations. The first steps will be to develop an LLM-based querying system for the bio.tools API and strengthen the integration between omics tools and ELIXIR services, as well as the large collection of related Bioconductor packages. Additionally, the project aims to improve end-user accessibility by facilitating structured queries and guided workflow usage, particularly through platforms like Galaxy’s Metabolomics and Proteomics environments.
 
-- Implement two layers of an abstract process (as prototyped in EDAM-MCP):
-  - Identify whether a term exists in EDAM (if so, return)
-  - If not, suggest a term (including where it should go in EDAM)
-- Cater to user groups for facilitating annotation for users or automatically (bio.tools, Bioconductor, nf-core, Galaxy, Application scenarios: single user wants to annotate concrete instance; ecosystem maintainer wants to automate annotations (human-in-the-loop)
-- Use case: metabolomics
-  - Core set of well-annotated tools - Collect, Formalise, Introduce into benchmark
-- Benchmark the utility of the developed functions / MCP on the domain dataset
-  - Q&A of example packages and the questions a user might have for them
+This project aims to enhance the accessibility and interoperability of metabolomics and proteomics tools by leveraging Large Language Models (LLMs) for automated, ontology-driven annotation.  
+We focus on integrating the [EDAM ontology](https://edamontology.org) with the Model Context Protocol (MCP) framework to provide structured, reproducible annotations of bioinformatics resources.
+
+The MCP is an emerging open standard for structured interaction between LLMs and external tools. It defines how models can call deterministic functions—such as ontology lookups or API queries—instead of relying purely on text generation. In our context, MCP acts as a control layer ensuring that annotations derived from natural language remain grounded in the EDAM ontology and are both reproducible and machine-readable.
+
+Key objectives include:
+- Developing an LLM-based querying system for the bio.tools API.  
+- Strengthening interoperability between omics tools, ELIXIR services, and Bioconductor packages.  
+- Facilitating user-friendly, structured search and guided workflow usage within Galaxy’s [Metabolomics](https://workflow4metabolomics.usegalaxy.fr/) and [Proteomics](https://proteore.org/) environments.  
+
 
 # Results
 
+## Overview
+
+During the hackathon, we extended the EDAM-MCP framework to improve ontology-driven annotation through structured, deterministic LLM interactions. Early experiments showed that unconstrained LLMs frequently hallucinate EDAM terms, producing annotations that are syntactically plausible but semantically invalid; MCP’s modular, function-based control mitigates this by enforcing explicit task definitions and reproducible behaviour.
+
+We planned a two-layered process:
+
+- Check whether a term already exists in EDAM; if so, return it.  
+- If no match exists, suggest a new term with its proposed position in the ontology.  
+
+The initial use case focused on metabolomics, chosen because of its diverse tools. We aimed to (1) identify a representative set of well-annotated tools, (2) create realistic Q&A benchmarks for annotation quality, and (3) evaluate the MCP workflow on this domain dataset.
+
+
 ## Use case: Metabolomics packages
-We identified ~20 metabolomics tools that are well-annotated in bio.tools for use in testing EDAM annotations (listed in this spreadsheet). Some of these bio.tools entries were manually annotated/improved with EDAM terms during the hackathon. We manually created questions and answers about two of these tools for the benchmarking. Examples question-answer pairs for the xcms tool are here: https://github.com/edamontology/edammcp/blob/main/benchmark/xcms/qa.tsv
-Next step is to create a script that can be run against biotools API for a given package and generates Q&A datasets for that package.
+
+We identified over 60 metabolomics tools in bio.tools, serving as the basis for testing EDAM annotations. These tools varied in annotation quality, so several were manually reviewed and updated during the hackathon. For benchmarking, we generated question–answer datasets for two of the selected tools (*xcms* and *recetox-aplcms*), which are available at: https://github.com/edamontology/edammcp/blob/main/benchmark.
+
+
+
+A prototype script was created to automate dataset generation. It queries the bio.tools API for a given package and produces structured Q&A datasets suitable for benchmarking annotation accuracy.
+
 
 ## EDAM-MCP workflow
-The challenge of applying an MCP-driven agent is to clearly and unambiguously instruct the agent with a multi-step task in order to reduce probabilistic problems in the copilot behaviour. We aim to structure the EDAM MCP approach into:
-an entry point that explains available functions to the copilot
-a set of deterministic functions that allow the copilot to flexibly apply the instructions
-To operationalize this approach, the EDAM MCP workflow introduces a structured process that separates high-level planning from low-level execution. After the entry point provides the copilot with task context and a concise map of available functions, the agent performs tool discovery and ranking using semantic metadata such as EDAM operations, data types, and constraints. This enables the agent to select the most relevant tools without requiring full parameter schemas upfront.
-Once the plan is formed, the agent retrieves detailed JSON signatures only for shortlisted tools and executes them through deterministic function calls. This design minimizes ambiguity, reduces probabilistic decision-making, and ensures reproducibility across multi-step tasks. By leveraging EDAM for semantic alignment, the workflow supports flexible orchestration while maintaining clarity and control. A graphical overview of these modules and their interactions is provided in https://github.com/edamontology/edammcp/issues/37, it contains a graphical overview of the modules, also below.
 
-![EDAM-MCP workflow](figures/edam_mcp_workflow.png) 
+Applying MCP to annotation required us to design a workflow that distinguishes planning (deciding what to do) from execution (carrying it out). This ensures reproducible, logically consistent mappings and reduces the probabilistic behaviour typical of unconstrained LLMs.
 
-*Segmentation*
-During the workflow design, an optional Segmentation step was introduced to break large free text input into chunks-  topics and keywords. This ensures clarity in planning and reduces ambiguity in multi-step execution. In addition, a Commonsense validation layer is planned to check the segmented steps for logical consistency and feasibility before execution, acting as a safeguard against nonsensical or incomplete plans.
+The workflow begins with an entry point that provides the copilot with a structured overview of available functions and options. Two key components were implemented and tested during the hackathon:
 
-*Mapping of EDAM branches*
-In our initial approach, the MCP server returned EDAM terms regardless of EDAM branch type (Operation, Topic, Format, Data). For instance, if we provide a text description with a few sentences covering both Data and Operation, we may have imbalanced results in terms of concept types and we may also retrieve EDAM Topics. To overcome this potential issue, we are investigating if we can split the mapping work into more specific tasks.  We began work on searching for only Operations (PR https://github.com/edamontology/edammcp/pull/51). Topics, Data, Formats will come in a future PR if this one is accepted. We still need to decide between four single mapping tools (for operations, data, topics, formats) or one combined mapping tool relying on these sub-mapping tasks. 
+- `get_workflow_summary()` (called `describe_workflow()` during development) - defines the MCP entry point, summarising the workflow and listing available functions, expected inputs/outputs, and configurable parameters.  
+- `segment_text()` - determines whether an input should be processed as a single concept or split into multiple semantically coherent segments to improve mapping precision.
+
+The remaining modules were designed conceptually and opened as GitHub issues for ongoing work:
+- `map_to_edam()` - main mapping function linking text to EDAM ontology terms using embeddings and ontology traversal.  
+- `commonsense_check()` - validation layer to assess mapping plausibility and adjust overly generic or overly specific terms.  
+- `merge_results()`, `report_summary()`, and `update_opts()` - functions to aggregate results, summarise mappings, and enable parameter re-runs.
+
+A schematic of the workflow and its interactions is shown below and detailed in [Issue #37](https://github.com/edamontology/edammcp/issues/37).
+
+![EDAM-MCP workflow](figures/edam_mcp_workflow.png)
+
+We also considered how the MCP handles EDAM branches (Operations, Topics, Data, Formats).  
+Initial testing showed that querying all branches simultaneously produced imbalanced results, so we began developing specialised sub-mappers—starting with an [Operations-only mapper (PR #51)](https://github.com/edamontology/edammcp/pull/51)—to improve control and benchmarking accuracy.
+
 
 ## Benchmarking
-Prior to the hackathon, we had outlined scenarios for benchmarking the EDAM-MCP workflow in a GitHub issue: https://github.com/edamontology/edammcp/issues/20
-During the hackathon, we started work on a programmatic approach, integrated with the biochatter benchmarking framework, that can evaluate the MCP based on the questions created from the well-annotated packages: https://github.com/edamontology/edammcp/tree/main/benchmark
-The automatically created benchmark questions are then transformed into the idiomatic biochatter benchmark format and executed in the biochatter suite, comparing naive model baselines to MCP-supported models. Merged in https://github.com/biocypher/biochatter/pull/321
-Preliminary results indicate that most models benefit from having the MCP support, even though the suite is far from complete. Claude Haiku is an exception, performing quite well on the (very simple) initial development benchmark of 10 questions. The benchmark should be continuously updated to inform the development of EDAM MCP. Further, EDAM MCP should be versioned to clarify which version was used to achieve which performance (this needs to be recorded in the benchmark results).
 
-![MCP baseline improvement summary](figures/mcp_baseline_improvement_summary.png) 
-![MCP baseline model comparison](figures/mcp_baseline_model_comparison.png) 
-![MCP baseline overall comparision summary](figures/mcp_baseline_overall_comparison.png) 
-![MCP baseline subtask comparison](figures/mcp_baseline_subtask_comparison.png) 
+To assess MCP’s contribution, we integrated a programmatic benchmarking framework with [BioChatter](https://github.com/biocypher/biochatter).  
+This pipeline automatically converts the Q&A datasets into BioChatter’s benchmark format and compares model outputs with and without MCP guidance.  
+The setup was merged in [BioChatter PR #321](https://github.com/biocypher/biochatter/pull/321).
+
+Preliminary results (based on a small, 10-question development benchmark) indicate that MCP-supported models generally outperform baseline LLMs in producing accurate EDAM annotations.  
+An exception was Claude Haiku, which performed well even without MCP—likely reflecting the simplicity of the dataset.  
+Future work will extend the benchmark to larger datasets and introduce versioned MCP releases for result traceability.
+
+Benchmark data and scripts are available in the [EDAM-MCP repository](https://github.com/edamontology/edammcp/tree/main/benchmark).
+
+![MCP baseline model comparison](figures/mcp_baseline_model_comparison.png)
+![MCP baseline improvement summary](figures/mcp_baseline_improvement_summary.png)
+![MCP baseline overall comparison summary](figures/mcp_baseline_overall_comparison.png)
+![MCP baseline subtask comparison](figures/mcp_baseline_subtask_comparison.png)
 
 
+## biocEDAM edamize
 
-
-![Poster from mid-week reporting](figures/biohack25_poster.png) 
+TODO – add summary of discussions, tests, and outcomes.
 
 
 # Discussion
 
-...
+Future plans include extending both the technical scope and practical applicability of the EDAM-MCP workflow. The approach is intended to support individual curators via human-in-the-loop annotation, as well as ecosystem maintainers seeking automated, large-scale annotation pipelines across resources such as bio.tools and Bioconductor.
+
+Future plans include:
+- Integrating new metabolomics and proteomics concepts into EDAM.  
+- Expanding the ground-truth dataset.  
+- Improving term-suggestion logic and integration with other EDAM components.  
+- Enhancing text-based annotation from diverse sources (e.g. package metadata, documentation).
+
+
+# Data availability
+
+All scripts and materials developed during the hackathon are available in the [EDAM-MCP GitHub repository](https://github.com/edamontology/edammcp).  
+The repository also includes benchmarking data, workflow specifications, and issue tracking for ongoing development.
+
 
 ## Acknowledgements
 
-...
+This work was carried out during the ELIXIR BioHackathon Europe 2025, held in Berlin, Germany, and organised by [ELIXIR](https://elixir-europe.org/). CR is part of the Institut Français de Bioinformatique (IFB, UAR 3601), funded by the Programme d’Investissements d’Avenir through the Agence Nationale de la Recherche (ANR-11-INBS-0013). This project also benefited from the Chan Zuckerberg Initiative EOSS6 grants "Software for Science: Ontological resource tagging and discovery for Bioconductor" (2024-342819 and 2024-342820).
+
 
 ## References
+
+## Supplementary material
+
+### Supplementary Figure S1: Mid-week reporting poster
+
+![Mid-week reporting poster used during BioHackathon Europe 2025](figures/biohack25_poster.png)
+
+**Supplementary Figure S1.** Mid-week reporting poster used during BioHackathon Europe 2025 to communicate early design decisions, illustrate EDAM branches, and motivate the use of the Model Context Protocol (MCP) to mitigate LLM hallucinations during ontology-driven tool annotation.
