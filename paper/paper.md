@@ -63,12 +63,14 @@ authors:
 - name: Hervé Ménager
   orcid: "0000-0002-7552-1009"
   affiliation: 6, 7
+- name: Júlia Mir
+  orcid: "00000-0001-6104-9260"
+  affiliation: 8
 - name: Claire Rioualen
   orcid: "0000-0002-7684-8679"
   affiliation: 7
 ---
-
-## Abstract
+# Abstract
 
 # Introduction
 
@@ -80,19 +82,19 @@ authors:
 
 ## Overview of the BioHackathon results
 
-![**Figure 1.** xx](figures/Fig1_biohack25_poster.png)
+![xx](figures/Fig1_biohack25_poster.png)
 
-![**Figure 2.** xx](figures/Fig2_llm_hallucination.png)
+![xx](figures/Fig2_llm_hallucination.png)
 
 ## EDAM-MCP workflow
 
-![**Figure 3.** xx](figures/Fig3_edam_mcp_workflow.png)
+![xx](figures/Fig3_edam_mcp_workflow.png)
 
 ## Use case: Metabolomics packages
 
 ## Benchmarking
 
-![**Figure 4.** xx](figures/Fig4_mcp_baseline_model_comparison.png)
+![xx](figures/Fig4_mcp_baseline_model_comparison.png)
 
 # Discussion 
 
