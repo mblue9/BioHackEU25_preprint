@@ -63,7 +63,7 @@ authors:
 - name: Hervé Ménager
   orcid: "0000-0002-7552-1009"
   affiliation: 6, 7
-  - name: Claire Rioualen
+- name: Claire Rioualen
   orcid: "0000-0002-7684-8679"
   affiliation: 7
 ---
