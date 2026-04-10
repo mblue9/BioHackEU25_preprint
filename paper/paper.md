@@ -8,7 +8,7 @@ affiliations:
   ror:  00cfam450
   index: 1
 - name: "RECETOX, Faculty of Science, Masaryk University, Kotlářská 2, 611 37 Brno, Czechia"
-  ror: xx
+  ror: 032hzqh22
   index: 2
 - name: "Channing Division of Network Medicine, Mass General Brigham, Harvard Medical School, Boston MA, 02115 USA"
   index: 3
@@ -25,7 +25,7 @@ affiliations:
   ror: 045f7pv37
   index: 7
 - name: "Centre for Genomic Regulation, The Barcelona Institute of Science and Technology, Dr. Aiguader 88, Barcelona 08003, Spain"
-  ror: 04qq88z54
+  ror: 03wyzt892
   index: 8
 tags:
 - bioinformatics
