@@ -217,8 +217,37 @@ such as the sub-mapping of individual branches described above.
 
 # Discussion 
 
+Future plans include extending both the technical scope and practical applicability of the EDAM-MCP workflow. 
+The approach is intended to support individual curators via human-in-the-loop annotation, 
+as well as ecosystem maintainers seeking automated, large-scale annotation pipelines across resources such as bio.tools and Bioconductor. 
+Specifically, we aim to:
+
+- Integrate new metabolomics and proteomics concepts into EDAM.
+
+- Expand the ground-truth dataset.
+
+- Improve term-suggestion logic and integration with other EDAM components.
+
+- Enhance text-based annotation from diverse sources (e.g. package metadata, documentation).
+
 # Data availability
 
+All scripts and materials developed during the hackathon are available in the [EDAM-MCP GitHub repository](https://github.com/edamontology/edammcp).  
+
+The repository also includes benchmarking data, workflow specifications, and issue tracking for ongoing development.
+
 # Acknowledgements
+
+This work was carried out during the ELIXIR BioHackathon Europe 2025, held in Berlin, Germany, 
+and organised by [ELIXIR](https://elixir-europe.org/). CR is part of the Institut Français de Bioinformatique (IFB, UAR 3601), 
+funded by the Programme d’Investissements d’Avenir through the Agence Nationale de la Recherche (ANR-11-INBS-0013). 
+This project also benefited from the Chan Zuckerberg Initiative EOSS6 grants "Software for Science: 
+Ontological resource tagging and discovery for Bioconductor" (2024-342819 and 2024-342820). 
+HH thanks the RECETOX Research Infrastructure (No LM2023069) financed by the Ministry of Education, Youth and Sports, 
+and the Operational Programme Research, Development and Education (the CETOCOEN EXCELLENCE project No. CZ.02.1.01/0.0/0.0/17_043/0009632) 
+for supportive background. This work was also supported from the European Union’s Horizon 2020 research 
+and innovation program under grant agreement No 857560 (CETOCOEN Excellence). Views and opinions expressed are however those of the author(s) 
+only and do not necessarily reflect those of the European Union or HADEA. Neither the European Union nor the granting authority 
+can be held responsible for them.
 
 # References
