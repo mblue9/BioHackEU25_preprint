@@ -79,11 +79,11 @@ particularly given the high rate of first-time package developers in academic en
 
 At BioHackathon Europe 2025, our team explored how Large Language Models (LLMs) can assist this process through the Model Context Protocol (MCP),
 an emerging open standard that specifies how LLMs call external functions, using metabolomics as a domain use case. 
-We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology (Ison et al., 2013), 
+We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology (Ison et al., 2013) [@citesAsDataSource:vizcaino_community_2017], 
 improving reproducibility and semantic precision. Two core modules, entry-point specification and semantic text segmentation,
 were completed during the hackathon, while additional mapping, validation, and reporting functions were outlined for follow-up development. 
-Benchmarking integrated with the BioChatter framework (Lobentanzer et al., 2025) demonstrated that MCP-assisted models 
-outperform unconstrained baselines on initial tests using metabolomics packages from bio.tools (Ison et al., 2019). 
+Benchmarking integrated with the BioChatter framework (Lobentanzer et al., 2025) [@citesAsDataSource:lobentanzer_platform_2025] demonstrated that MCP-assisted models 
+outperform unconstrained baselines on initial tests using metabolomics packages from bio.tools (Ison et al., 2019) [@citesAsDataSource:ison_edam_2013]. 
 
 Ongoing work will expand benchmarking datasets, refine term-mapping logic, and extend the workflow to proteomics, 
 supporting scalable, ontology-driven annotation across the ELIXIR ecosystem.
@@ -98,7 +98,7 @@ and [proteomics](https://elixir-europe.org/communities/proteomics) face ongoing 
 (e.g. MS-based workflows and bioimaging pipelines).  
 
 While these communities have advanced standardization through [EDAM-annotated Bioconductor packages](https://doi.org/10.37044/osf.io/dsgnw_v1) 
-(Rioualen et al., 2025), several gaps persist:  
+(Rioualen et al., 2025)[@citesAsDataSource:rioualen_biohackeu24_2025], several gaps persist:  
 
 1. Manual tool annotation in [bio.tools](https://bio.tools) is labour-intensive and often inconsistent.
 
@@ -106,7 +106,7 @@ While these communities have advanced standardization through [EDAM-annotated Bi
 
 3. Integration across ELIXIR services (Galaxy, WorkflowHub, BioContainers) requires strengthening, 
 as identified in [ELIXIR commissioned services](https://elixir-europe.org/internal-projects/commissioned-services/proteomics-pipelines) 
-and a related [white paper](https://f1000research.com/articles/6-875/v1) (Viscaíno et al., 2017).
+and a related [white paper](https://f1000research.com/articles/6-875/v1) (Viscaíno et al., 2017) [@citesAsDataSource:vizcaino_community_2017].
 
 This  project was initiated at the [2025 ISMB CollaborationFest](https://doi.org/10.12688/f1000research.169977.1): 
 [Improving how we describe and discover Bioinformatics tools](https://github.com/mblue9/biocedam-cofest-2025). 
@@ -238,7 +238,7 @@ The repository also includes benchmarking data, workflow specifications, and iss
 
 # Acknowledgements
 
-This work was carried out during the ELIXIR BioHackathon Europe 2025, held in Berlin, Germany, 
+ThisworkwascarriedoutduringtheELIXIRBioHackathonEurope2025,heldinBerlin,Germany,
 and organised by [ELIXIR](https://elixir-europe.org/). CR is part of the Institut Français de Bioinformatique (IFB, UAR 3601), 
 funded by the Programme d’Investissements d’Avenir through the Agence Nationale de la Recherche (ANR-11-INBS-0013). 
 This project also benefited from the Chan Zuckerberg Initiative EOSS6 grants "Software for Science: 
