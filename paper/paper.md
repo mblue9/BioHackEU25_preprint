@@ -105,7 +105,7 @@ supporting scalable, ontology-driven annotation across the ELIXIR ecosystem.
 and [proteomics](https://elixir-europe.org/communities/proteomics) face ongoing interoperability challenges despite shared platforms 
 and analytical frameworks (e.g. MS-based workflows and bioimaging pipelines).
 
-While these communities have advanced standardization through [EDAM-annotated\ Bioconductor\ packages](https://doi.org/10.37044/osf.io/dsgnw_v1) 
+While these communities have advanced standardization through EDAM-annotated Bioconductor packages 
 [@citesAsRecommendedReading:rioualen_biohackeu24_2025], several gaps persist:  
 
 1. Manual tool annotation in [bio.tools](https://bio.tools) is labour-intensive and often inconsistent.
@@ -114,7 +114,7 @@ While these communities have advanced standardization through [EDAM-annotated\ B
 
 3. Integration across ELIXIR services (Galaxy, WorkflowHub, BioContainers) requires strengthening, 
 as identified in [ELIXIR commissioned services](https://elixir-europe.org/internal-projects/commissioned-services/proteomics-pipelines) 
-and a related [white paper](https://f1000research.com/articles/6-875/v1) [@cites:vizcaino_community_2017].
+and a related white paper [@cites:vizcaino_community_2017].
 
 This  project was initiated at the [2025\ ISMB\ CollaborationFest](https://doi.org/10.12688/f1000research.169977.1): 
 [Improving how we describe and discover Bioinformatics tools](https://github.com/mblue9/biocedam-cofest-2025).
