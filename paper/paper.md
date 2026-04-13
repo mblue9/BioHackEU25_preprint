@@ -72,11 +72,67 @@ authors:
 ---
 # Abstract
 
+Identifying the most appropriate bioinformatics tool for a task remains challenging across multiple domains. 
+Annotating tools with EDAM ontology terms (e.g. topics, operations, input / output data and formats) can help 
+but manual annotation is labour-intensive, error-prone, and difficult to scale, 
+particularly given the high rate of first-time package developers in academic environments. 
+
+At BioHackathon Europe 2025, our team explored how Large Language Models (LLMs) can assist this process through the Model Context Protocol (MCP),
+an emerging open standard that specifies how LLMs call external functions, using metabolomics as a domain use case. 
+We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology (Ison et al., 2013), 
+improving reproducibility and semantic precision. Two core modules, entry-point specification and semantic text segmentation,
+were completed during the hackathon, while additional mapping, validation, and reporting functions were outlined for follow-up development. 
+Benchmarking integrated with the BioChatter framework (Lobentanzer et al., 2025) demonstrated that MCP-assisted models 
+outperform unconstrained baselines on initial tests using metabolomics packages from bio.tools (Ison et al., 2019). 
+
+Ongoing work will expand benchmarking datasets, refine term-mapping logic, and extend the workflow to proteomics, 
+supporting scalable, ontology-driven annotation across the ELIXIR ecosystem.
+
 # Introduction
 
 ## Background
 
+[Metabolomics](https://elixir-europe.org/communities/metabolomics), 
+[fluxomics](https://elixir-europe.org/internal-projects/commissioned-services/fluxomics-workflows), 
+and [proteomics](https://elixir-europe.org/communities/proteomics) face ongoing interoperability challenges despite shared platforms and analytical frameworks
+(e.g. MS-based workflows and bioimaging pipelines).  
+
+While these communities have advanced standardization through [EDAM-annotated Bioconductor packages](https://doi.org/10.37044/osf.io/dsgnw_v1) 
+(Rioualen et al., 2025), several gaps persist:  
+
+1. Manual tool annotation in [bio.tools](https://bio.tools) is labour-intensive and often inconsistent.
+
+2. Tool discoverability for experimentalists remains limited.
+
+3. Integration across ELIXIR services (Galaxy, WorkflowHub, BioContainers) requires strengthening, 
+as identified in [ELIXIR commissioned services](https://elixir-europe.org/internal-projects/commissioned-services/proteomics-pipelines) 
+and a related [white paper](https://f1000research.com/articles/6-875/v1) (Viscaíno et al., 2017).
+
+This  project was initiated at the [2025 ISMB CollaborationFest](https://doi.org/10.12688/f1000research.169977.1): 
+[Improving how we describe and discover Bioinformatics tools](https://github.com/mblue9/biocedam-cofest-2025). 
+As a result, a first draft of the EDAM MCP server was developed to improve LLM-based annotations. 
+
+The MCP is an emerging open standard for structured interaction between LLMs and external tools. 
+It defines how models can call external functions—such as ontology lookups or API queries—instead of relying purely on text generation. 
+In our context, MCP acts as a control layer ensuring that annotations derived from natural language remain 
+grounded in the EDAM ontology and are both reproducible and machine-readable.
+
 ## Objectives
+
+This project aims to enhance the accessibility and interoperability of metabolomics and proteomics tools 
+by leveraging Large Language Models (LLMs) for automated, ontology-driven annotation.  
+
+We focus on integrating the [EDAM ontology](https://doi.org/10.7490/f1000research.1118900.1) with the MCP framework to provide structured, 
+reproducible annotations of bioinformatics resources.
+
+Key objectives include:
+
+- Developing an LLM-based querying system for the bio.tools API.  
+
+- Strengthening interoperability between omics tools, ELIXIR services, and Bioconductor packages.  
+
+- Facilitating user-friendly, structured search and guided workflow usage within Galaxy’s [Metabolomics](https://workflow4metabolomics.usegalaxy.fr/) 
+and [Proteomics](https://proteore.org/) environments.  
 
 # Results
 
