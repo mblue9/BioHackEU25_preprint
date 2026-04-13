@@ -81,7 +81,7 @@ authors:
 # Abstract
 
 Identifying the most appropriate bioinformatics tool for a task remains challenging across multiple domains.
-Annotating tools with EDAM ontology terms (e.g. topics, operations, input / output data and formats) can help 
+Annotating tools with EDAM ontology terms (e.g. topics, operations, input / output data and formats) can help, 
 but manual annotation is labour-intensive, error-prone, and difficult to scale, 
 particularly given the high rate of first-time package developers in academic environments.
 
@@ -108,7 +108,7 @@ and analytical frameworks (e.g. MS-based workflows and bioimaging pipelines).
 While these communities have advanced standardization through EDAM-annotated Bioconductor packages 
 [@citesAsRecommendedReading:rioualen_biohackeu24_2025], several gaps persist:  
 
-1. Manual tool annotation in [bio.tools](https://bio.tools) is labour-intensive and often inconsistent.
+1. Manual tool annotation in [bio.tools](https://bio.tools) is labour-intensive and sometimes inconsistent.
 
 2. Tool discoverability for experimentalists remains limited.
 
@@ -137,7 +137,7 @@ Key objectives include:
 
 - Developing an LLM-based querying system for the bio.tools API.
 
-- Strengthening interoperability between omics tools, ELIXIR services, and Bioconductor packages.
+- Strengthening interoperability between omics tools, ELIXIR services, and Bioconductor packages [@extends:gentleman_bioconductor_2004].
 
 - Facilitating user-friendly, structured search and guided workflow usage within Galaxy’s [Metabolomics](https://workflow4metabolomics.usegalaxy.fr/) 
 and [Proteomics](https://proteore.org/) environments.
@@ -255,13 +255,13 @@ The repository also includes benchmarking data, workflow specifications, and iss
 # Acknowledgements
 
 This work was carried out during the ELIXIR BioHackathon Europe 2025, held in Berlin, Germany,
-and organised by [ELIXIR](https://elixir-europe.org/). CR is part of the Institut Français de Bioinformatique (IFB, UAR 3601), 
+and organised by [ELIXIR](https://elixir-europe.org/). CR, AG and HM are part of the Institut Français de Bioinformatique (IFB, UAR 3601), 
 funded by the Programme d’Investissements d’Avenir through the Agence Nationale de la Recherche (ANR-11-INBS-0013).
 This project also benefited from the Chan Zuckerberg Initiative EOSS6 grants "Software for Science: 
 Ontological resource tagging and discovery for Bioconductor" (2024-342819 and 2024-342820). 
 HH thanks the RECETOX Research Infrastructure (No LM2023069) financed by the Ministry of Education, Youth and Sports, 
 and the Operational Programme Research, Development and Education (the CETOCOEN EXCELLENCE project No. CZ.02.1.01/0.0/0.0/17_043/0009632) 
-for supportive background. This work was also supported from the European Union’s Horizon 2020 research 
+for supportive background. This work was also supported by the European Union’s Horizon 2020 research 
 and innovation program under grant agreement No 857560 (CETOCOEN Excellence). Views and opinions expressed are however those of the author(s) 
 only and do not necessarily reflect those of the European Union or HADEA. Neither the European Union nor the granting authority 
 can be held responsible for them.
