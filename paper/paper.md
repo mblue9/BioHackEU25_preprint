@@ -64,7 +64,7 @@ authors:
   orcid: "0000-0002-7552-1009"
   affiliation: 6, 7
 - name: Júlia Mir
-  orcid: "00000-0001-6104-9260"
+  orcid: "0000-0001-6104-9260"
   affiliation: 8
 - name: Claire Rioualen
   orcid: "0000-0002-7684-8679"
@@ -136,21 +136,84 @@ and [Proteomics](https://proteore.org/) environments.
 
 # Results
 
-## Overview of the BioHackathon results
+## Overview
 
-![xx](figures/Fig1_biohack25_poster.png)
+During the hackathon, we extended the EDAM-MCP framework to improve ontology-driven annotation through structured, 
+deterministic LLM interactions (Figure 1). Early experiments showed that unconstrained LLMs frequently hallucinate EDAM terms, 
+producing annotations that are syntactically plausible but semantically invalid (Figure 2). MCP’s modular, 
+function-based control mitigates this by enforcing explicit task definitions and reproducible behaviour.
 
-![xx](figures/Fig2_llm_hallucination.png)
+![Mid-week reporting poster used during BioHackathon Europe 2025 to communicate early design decisions, 
+illustrate EDAM branches, and motivate the use of the Model Context Protocol to mitigate LLM hallucinations 
+during ontology-driven tool annotation.](figures/Fig1_biohack25_poster.png)
+
+![Example of hallucination: operation_3225 is actually “Variant classification”.](figures/Fig2_llm_hallucination.png)
+
+We planned a two-layered process:
+- Check whether a term already exists in EDAM; if so, return it.  
+- If no match exists, suggest a new term with its proposed position in the ontology.  
+The initial use case focused on metabolomics, chosen because of the wide range of software it includes. We aimed to (1) identify a representative set of well-annotated tools, (2) create realistic Q&A benchmarks for annotation quality, and (3) evaluate the MCP workflow on this domain dataset.
 
 ## EDAM-MCP workflow
 
-![xx](figures/Fig3_edam_mcp_workflow.png)
+Applying MCP to annotation required us to design a workflow that distinguishes planning (deciding what to do) from execution (carrying it out). 
+This ensures reproducible, logically consistent mappings and reduces the probabilistic behaviour typical of unconstrained LLMs.
+
+The workflow begins with an entry point that provides the AI agent with a structured overview of available functions and options. 
+Two key components were implemented and tested during the hackathon:
+
+- `get_workflow_summary()` (called `describe_workflow()` during development) - defines the MCP entry point, summarizing the workflow and listing available functions, expected inputs/outputs, and configurable parameters.  
+
+- `segment_text()` - determines whether an input should be processed as a single concept or split into multiple semantically coherent segments to improve mapping precision.
+
+The remaining modules were designed conceptually and opened as GitHub issues for ongoing work:
+
+- `map_to_edam()` - main mapping function linking text to EDAM ontology terms using embeddings and ontology traversal.  
+
+- `commonsense_check()` - validation layer to assess mapping plausibility and adjust overly generic or overly specific terms.  
+
+- `merge_results()`, `report_summary()`, and `update_opts()` - functions to aggregate results, summarise mappings, and enable parameter re-runs.
+
+A schematic of the workflow and its interactions is shown below and detailed in [Issue #37](https://github.com/edamontology/edammcp/issues/37) 
+(Figure 3).
+
+![Schematic of the workflow and its interactions.](figures/Fig3_edam_mcp_workflow.png)
+
+We also considered how the MCP handles EDAM branches (Operations, Topics, Data, Formats). 
+One of the key elements in the implementation of these functions is the logical constraints inferred from choices of concepts 
+in the different EDAM branches, which dictate whether for instance a given output EDAM format is compatible with a chosen EDAM operation. 
+Initial testing showed that querying all branches simultaneously produced imbalanced results, 
+so we began developing specialised sub-mappers—starting with an Operations-only mapper ([PR #51](https://github.com/edamontology/edammcp/pull/51))—to improve control and benchmarking accuracy.
+
 
 ## Use case: Metabolomics packages
 
+We identified over 60 metabolomics tools in bio.tools, serving as a basis for testing EDAM annotations ([Supplementary Table S1](https://github.com/mblue9/BioHackEU25_preprint/tree/main/paper/S1_tools_metabolomics_from_biotools.xlsx)). These tools varied in annotation quality, so several were manually reviewed and updated during the hackathon. 
+
+For benchmarking, we generated question-answer datasets for two of the selected tools (*xcms* and *recetox-aplcms*), 
+which are available at: https://github.com/edamontology/edammcp/blob/main/benchmark.
+
+A prototype script was created to automate dataset generation. 
+It queries the bio.tools API for a given package and produces structured Q&A datasets suitable for benchmarking annotation accuracy.
+
 ## Benchmarking
 
-![xx](figures/Fig4_mcp_baseline_model_comparison.png)
+To assess the MCP’s contribution, we integrated a programmatic benchmarking framework with [BioChatter](https://github.com/biocypher/biochatter). 
+Benchmark data and scripts are available in the [EDAM-MCP repository](https://github.com/edamontology/edammcp/tree/main/benchmark). 
+The pipeline we constructed automatically converts the Q&A datasets, 
+based on well-annotated metabolomics packages, into BioChatter’s benchmark format and compares model outputs with and without MCP guidance. 
+The setup was merged in [BioChatter PR #321](https://github.com/biocypher/biochatter/pull/321).
+
+Preliminary results (based on a small, 10-question development benchmark) indicate that MCP-supported models 
+generally outperform baseline LLMs in producing accurate EDAM annotations (Figure 4). 
+An exception was Claude Haiku, which performed well even without MCP—likely reflecting the simplicity of the dataset. 
+Future work will extend the benchmark to larger datasets and introduce versioned MCP releases for result traceability. 
+We will also include secondary measures, such as the cost of model runs, in the more comprehensive benchmark. 
+Before the more extensive benchmarking, a first stable version of the MCP server should be attempted to facilitate consistent measurements. 
+This includes decisions on the function scope of the MCP server and technical challenges 
+such as the sub-mapping of individual branches described above.
+
+![Evaluation on 2 examples shows significantly better performance over the baseline LLM.](figures/Fig4_mcp_baseline_model_comparison.png)
 
 # Discussion 
 
