@@ -94,8 +94,8 @@ supporting scalable, ontology-driven annotation across the ELIXIR ecosystem.
 
 [Metabolomics](https://elixir-europe.org/communities/metabolomics), 
 [fluxomics](https://elixir-europe.org/internal-projects/commissioned-services/fluxomics-workflows), 
-and [proteomics](https://elixir-europe.org/communities/proteomics) face ongoing interoperability challenges despite shared platforms and analytical frameworks
-(e.g. MS-based workflows and bioimaging pipelines).  
+and [proteomics](https://elixir-europe.org/communities/proteomics) face ongoing interoperability challenges despite shared platforms 
+and analytical frameworks (e.g. MS-based workflows and bioimaging pipelines).  
 
 While these communities have advanced standardization through [EDAM-annotated Bioconductor packages](https://doi.org/10.37044/osf.io/dsgnw_v1) 
 [@citesAsDataSource:rioualen_biohackeu24_2025], several gaps persist:  
@@ -256,3 +256,11 @@ only and do not necessarily reflect those of the European Union or HADEA. Neithe
 can be held responsible for them.
 
 # References
+
+SL: co-lead, hacking, writing. 
+HH: co-lead, curation, hacking, writing. VJC: hacking. 
+MAD: hacking, writing. 
+AG: hacking. 
+HM: hacking, writing. 
+JM: online hacking. 
+CR: co-lead, hacking, writing.
