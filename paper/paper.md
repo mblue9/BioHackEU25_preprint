@@ -79,11 +79,11 @@ particularly given the high rate of first-time package developers in academic en
 
 At BioHackathon Europe 2025, our team explored how Large Language Models (LLMs) can assist this process through the Model Context Protocol (MCP),
 an emerging open standard that specifies how LLMs call external functions, using metabolomics as a domain use case. 
-We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology (Ison et al., 2013) [@citesAsDataSource:vizcaino_community_2017], 
+We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology [@citesAsDataSource:vizcaino_community_2017], 
 improving reproducibility and semantic precision. Two core modules, entry-point specification and semantic text segmentation,
 were completed during the hackathon, while additional mapping, validation, and reporting functions were outlined for follow-up development. 
-Benchmarking integrated with the BioChatter framework (Lobentanzer et al., 2025) [@citesAsDataSource:lobentanzer_platform_2025] demonstrated that MCP-assisted models 
-outperform unconstrained baselines on initial tests using metabolomics packages from bio.tools (Ison et al., 2019) [@citesAsDataSource:ison_edam_2013]. 
+Benchmarking integrated with the BioChatter framework [@citesAsDataSource:lobentanzer_platform_2025] demonstrated that MCP-assisted models 
+outperform unconstrained baselines on initial tests using metabolomics packages from bio.tools [@citesAsDataSource:ison_edam_2013]. 
 
 Ongoing work will expand benchmarking datasets, refine term-mapping logic, and extend the workflow to proteomics, 
 supporting scalable, ontology-driven annotation across the ELIXIR ecosystem.
@@ -98,7 +98,7 @@ and [proteomics](https://elixir-europe.org/communities/proteomics) face ongoing 
 (e.g. MS-based workflows and bioimaging pipelines).  
 
 While these communities have advanced standardization through [EDAM-annotated Bioconductor packages](https://doi.org/10.37044/osf.io/dsgnw_v1) 
-(Rioualen et al., 2025)[@citesAsDataSource:rioualen_biohackeu24_2025], several gaps persist:  
+[@citesAsDataSource:rioualen_biohackeu24_2025], several gaps persist:  
 
 1. Manual tool annotation in [bio.tools](https://bio.tools) is labour-intensive and often inconsistent.
 
@@ -106,7 +106,7 @@ While these communities have advanced standardization through [EDAM-annotated Bi
 
 3. Integration across ELIXIR services (Galaxy, WorkflowHub, BioContainers) requires strengthening, 
 as identified in [ELIXIR commissioned services](https://elixir-europe.org/internal-projects/commissioned-services/proteomics-pipelines) 
-and a related [white paper](https://f1000research.com/articles/6-875/v1) (Viscaíno et al., 2017) [@citesAsDataSource:vizcaino_community_2017].
+and a related [white paper](https://f1000research.com/articles/6-875/v1) [@citesAsDataSource:vizcaino_community_2017].
 
 This  project was initiated at the [2025 ISMB CollaborationFest](https://doi.org/10.12688/f1000research.169977.1): 
 [Improving how we describe and discover Bioinformatics tools](https://github.com/mblue9/biocedam-cofest-2025). 
@@ -150,9 +150,14 @@ during ontology-driven tool annotation.](figures/Fig1_biohack25_poster.png)
 ![Example of hallucination: operation_3225 is actually “Variant classification”.](figures/Fig2_llm_hallucination.png)
 
 We planned a two-layered process:
+
 - Check whether a term already exists in EDAM; if so, return it.  
+
 - If no match exists, suggest a new term with its proposed position in the ontology.  
-The initial use case focused on metabolomics, chosen because of the wide range of software it includes. We aimed to (1) identify a representative set of well-annotated tools, (2) create realistic Q&A benchmarks for annotation quality, and (3) evaluate the MCP workflow on this domain dataset.
+
+The initial use case focused on metabolomics, chosen because of the wide range of software it includes. We aimed to (1) identify 
+a representative set of well-annotated tools, (2) create realistic Q&A benchmarks for annotation quality, and (3) evaluate 
+the MCP workflow on this domain dataset.
 
 ## EDAM-MCP workflow
 
