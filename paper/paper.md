@@ -48,27 +48,35 @@ authors:
 - name: Sebastian Lobentanzer
   orcid: "0000-0003-3399-6695"
   affiliation: 1
+  role: co-lead, hacking, writing
 - name: Helge Hecht
   orcid: "0000-0001-6744-996X"
   affiliation: 2
+  role: co-lead, curation, hacking, writing
 - name: Vincent J Carey
   orcid: "0000-0003-4046-0063"
   affiliation: 3
+  role: hacking
 - name: Maria A Doyle
   orcid: "0000-0003-4847-8436"
   affiliation: 4
+  role: hacking, writing
 - name: Alban Gaignard
   orcid: "0000-0002-3597-8557"
   affiliation: 5
+  role: hacking
 - name: Hervé Ménager
   orcid: "0000-0002-7552-1009"
   affiliation: 6, 7
+  role: hacking, writing
 - name: Júlia Mir
   orcid: "0000-0001-6104-9260"
   affiliation: 8
+  role: online hacking
 - name: Claire Rioualen
   orcid: "0000-0002-7684-8679"
   affiliation: 7
+  role: co-lead, hacking, writing
 ---
 # Abstract
 
@@ -256,11 +264,3 @@ only and do not necessarily reflect those of the European Union or HADEA. Neithe
 can be held responsible for them.
 
 # References
-
-SL: co-lead, hacking, writing. 
-HH: co-lead, curation, hacking, writing. VJC: hacking. 
-MAD: hacking, writing. 
-AG: hacking. 
-HM: hacking, writing. 
-JM: online hacking. 
-CR: co-lead, hacking, writing.
