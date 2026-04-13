@@ -48,35 +48,35 @@ authors:
 - name: Sebastian Lobentanzer
   orcid: "0000-0003-3399-6695"
   affiliation: 1
-  role: co-lead, hacking, writing
+  role: Co-lead, hacking, writing.
 - name: Helge Hecht
   orcid: "0000-0001-6744-996X"
   affiliation: 2
-  role: co-lead, curation, hacking, writing
+  role: Co-lead, curation, hacking, writing.
 - name: Vincent J Carey
   orcid: "0000-0003-4046-0063"
   affiliation: 3
-  role: hacking
+  role: Hacking.
 - name: Maria A Doyle
   orcid: "0000-0003-4847-8436"
   affiliation: 4
-  role: hacking, writing
+  role: Hacking, writing.
 - name: Alban Gaignard
   orcid: "0000-0002-3597-8557"
   affiliation: 5
-  role: hacking
+  role: Hacking.
 - name: Hervé Ménager
   orcid: "0000-0002-7552-1009"
   affiliation: 6, 7
-  role: hacking, writing
+  role: Hacking, writing.
 - name: Júlia Mir
   orcid: "0000-0001-6104-9260"
   affiliation: 8
-  role: online hacking
+  role: Online hacking.
 - name: Claire Rioualen
   orcid: "0000-0002-7684-8679"
   affiliation: 7
-  role: co-lead, hacking, writing
+  role: Co-lead, hacking, writing.
 ---
 # Abstract
 
@@ -87,11 +87,11 @@ particularly given the high rate of first-time package developers in academic en
 
 At BioHackathon Europe 2025, our team explored how Large Language Models (LLMs) can assist this process through the Model Context Protocol (MCP),
 an emerging open standard that specifies how LLMs call external functions, using metabolomics as a domain use case. 
-We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology [@citesAsDataSource:vizcaino_community_2017], 
+We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology [@citesAsDataSource:ison_edam_2013], 
 improving reproducibility and semantic precision. Two core modules, entry-point specification and semantic text segmentation,
 were completed during the hackathon, while additional mapping, validation, and reporting functions were outlined for follow-up development. 
-Benchmarking integrated with the BioChatter framework [@citesAsDataSource:lobentanzer_platform_2025] demonstrated that MCP-assisted models 
-outperform unconstrained baselines on initial tests using metabolomics packages from bio.tools [@citesAsDataSource:ison_edam_2013]. 
+Benchmarking integrated with the BioChatter framework [@extends:lobentanzer_platform_2025] demonstrated that MCP-assisted models 
+outperform unconstrained baselines on initial tests using metabolomics packages from bio.tools [@extends:ison_edam_2019]. 
 
 Ongoing work will expand benchmarking datasets, refine term-mapping logic, and extend the workflow to proteomics, 
 supporting scalable, ontology-driven annotation across the ELIXIR ecosystem.
@@ -105,8 +105,8 @@ supporting scalable, ontology-driven annotation across the ELIXIR ecosystem.
 and [proteomics](https://elixir-europe.org/communities/proteomics) face ongoing interoperability challenges despite shared platforms 
 and analytical frameworks (e.g. MS-based workflows and bioimaging pipelines).  
 
-While these communities have advanced standardization through [EDAM-annotated Bioconductor packages](https://doi.org/10.37044/osf.io/dsgnw_v1) 
-[@citesAsDataSource:rioualen_biohackeu24_2025], several gaps persist:  
+While these communities have advanced standardization through [EDAM-annotated  Bioconductor  packages](https://doi.org/10.37044/osf.io/dsgnw_v1) 
+[@citesAsRecommendedReading:rioualen_biohackeu24_2025], several gaps persist:  
 
 1. Manual tool annotation in [bio.tools](https://bio.tools) is labour-intensive and often inconsistent.
 
@@ -114,11 +114,11 @@ While these communities have advanced standardization through [EDAM-annotated Bi
 
 3. Integration across ELIXIR services (Galaxy, WorkflowHub, BioContainers) requires strengthening, 
 as identified in [ELIXIR commissioned services](https://elixir-europe.org/internal-projects/commissioned-services/proteomics-pipelines) 
-and a related [white paper](https://f1000research.com/articles/6-875/v1) [@citesAsDataSource:vizcaino_community_2017].
+and a related [white paper](https://f1000research.com/articles/6-875/v1) [@cites:vizcaino_community_2017].
 
-This  project was initiated at the [2025 ISMB CollaborationFest](https://doi.org/10.12688/f1000research.169977.1): 
+This  project was initiated at the [2025\ ISMB\ CollaborationFest](https://doi.org/10.12688/f1000research.169977.1): 
 [Improving how we describe and discover Bioinformatics tools](https://github.com/mblue9/biocedam-cofest-2025). 
-As a result, a first draft of the EDAM MCP server was developed to improve LLM-based annotations. 
+As a result, a first draft of the EDAM-MCP server was developed to improve LLM-based annotations. 
 
 The MCP is an emerging open standard for structured interaction between LLMs and external tools. 
 It defines how models can call external functions—such as ontology lookups or API queries—instead of relying purely on text generation. 
@@ -128,9 +128,9 @@ grounded in the EDAM ontology and are both reproducible and machine-readable.
 ## Objectives
 
 This project aims to enhance the accessibility and interoperability of metabolomics and proteomics tools 
-by leveraging Large Language Models (LLMs) for automated, ontology-driven annotation.  
+by leveraging LLMs for automated, ontology-driven annotation.  
 
-We focus on integrating the [EDAM ontology](https://doi.org/10.7490/f1000research.1118900.1) with the MCP framework to provide structured, 
+We focus on integrating the [EDAM  ontology](https://edamontology.org) with the MCP framework to provide structured, 
 reproducible annotations of bioinformatics resources.
 
 Key objectives include:
@@ -183,14 +183,15 @@ The remaining modules were designed conceptually and opened as GitHub issues for
 
 - `map_to_edam()` - main mapping function linking text to EDAM ontology terms using embeddings and ontology traversal.  
 
-- `commonsense_check()` - validation layer to assess mapping plausibility and adjust overly generic or overly specific terms.  
+- `commonsense_check()` - validation layer to assess mapping plausibility and adjust overly generic or overly specific terms [Issue #41](https://github.com/edamontology/edammcp/issues/41). 
 
-- `merge_results()`, `report_summary()`, and `update_opts()` - functions to aggregate results, summarise mappings, and enable parameter re-runs.
+- `merge_results()`, `report_summary()`, and `update_opts()` - functions to aggregate results, summarise mappings, and enable parameter re-runs 
+([Issue #42](https://github.com/edamontology/edammcp/issues/42), [Issue #43](https://github.com/edamontology/edammcp/issues/43), [Issue #44](https://github.com/edamontology/edammcp/issues/44)).
 
-A schematic of the workflow and its interactions is shown below and detailed in [Issue #37](https://github.com/edamontology/edammcp/issues/37) 
+A schematic view of the workflow and its interactions is shown below and detailed in [Issue #37](https://github.com/edamontology/edammcp/issues/37) 
 (Figure 3).
 
-![Schematic of the workflow and its interactions.](figures/Fig3_edam_mcp_workflow.png)
+![Schematic view of the workflow and its interactions.](figures/Fig3_edam_mcp_workflow.png)
 
 We also considered how the MCP handles EDAM branches (Operations, Topics, Data, Formats). 
 One of the key elements in the implementation of these functions is the logical constraints inferred from choices of concepts 
