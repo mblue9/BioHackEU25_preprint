@@ -87,7 +87,7 @@ particularly given the high rate of first-time package developers in academic en
 
 At BioHackathon Europe 2025, our team explored how Large Language Models (LLMs) can assist this process through the Model Context Protocol (MCP),
 an emerging open standard that specifies how LLMs call external functions, using metabolomics as a domain use case.
-We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology [@citesAsDataSource:ison_edam_2013], 
+We developed an MCP-based workflow that grounds tool descriptions in the EDAM ontology [@citesAsDataSource:ison_edam_2013] [@citesAsDataSource:black_edam_2021], 
 improving reproducibility and semantic precision. Two core modules, entry-point specification and semantic text segmentation,
 were completed during the hackathon, while additional mapping, validation, and reporting functions were outlined for follow-up development.
 Benchmarking integrated with the BioChatter framework [@extends:lobentanzer_platform_2025] demonstrated that MCP-assisted models 
